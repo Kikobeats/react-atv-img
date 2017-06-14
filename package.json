@@ -43,11 +43,14 @@
     "babel-plugin-react-transform": "~2.0.2",
     "babel-plugin-transform-object-rest-spread": "~6.23.0",
     "babel-preset-env": "~1.5.2",
+    "babel-preset-react": "~6.24.1",
     "babel-preset-react-optimize": "~1.0.1",
     "babel-register": "~6.24.1",
+    "create-react-class": "~15.6.0",
     "expect": "~1.12.2",
     "express": "~4.15.3",
     "mocha": "~3.4.2",
+    "prop-types": "~15.5.10",
     "react": "~15.6.0",
     "react-dom": "~15.6.0",
     "react-transform-catch-errors": "~1.0.0",
@@ -58,7 +61,6 @@
     "standard-markdown": "~4.0.1",
     "webpack": "~2.6.1",
     "webpack-dev-middleware": "~1.10.2",
-    "webpack-hot-middleware": "~2.18.0",
-    "babel-preset-react": "~6.24.1"
+    "webpack-hot-middleware": "~2.18.0"
   }
 }
