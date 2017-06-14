@@ -6,11 +6,12 @@ import style from './style'
 
 export default createClass({
   propTypes: {
-    layers: PropTypes.arrayOf(PropTypes.string).isRequired,
+    layers: PropTypes.arrayOf(PropTypes.string),
     isStatic: PropTypes.bool,
     staticFallback: PropTypes.string,
     className: PropTypes.string,
-    style: PropTypes.object
+    style: PropTypes.object,
+    children: PropTypes.node
   },
 
   getInitialState () {
@@ -42,7 +43,8 @@ export default createClass({
   },
 
   handleMove ({pageX, pageY}) {
-    const layerCount = this.props.layers.length // the number of layers
+    const allLayers = this.allLayers()
+    const layerCount = allLayers ? this.allLayers.length : 0 // the number of layers
 
     const {rootElemWidth, rootElemHeight} = this.state
 
@@ -81,7 +83,7 @@ export default createClass({
         transform: `translateX(${offsetX * layerCount -
           0.1}px) translateY(${offsetY * layerCount - 0.1}px)`
       },
-      layers: this.props.layers.map((_, idx) => ({
+      layers: allLayers.map((_, idx) => ({
         transform: `translateX(${offsetX *
           (layerCount - idx) *
           (idx * 2.5 / wMultiple)}px) translateY(${offsetY *
@@ -110,6 +112,18 @@ export default createClass({
     })
   },
 
+  allLayers () {
+    let layers = this.props.layers || []
+
+    if (typeof this.props.children === 'object') {
+      layers = this.props.children.constructor === Array
+      ? layers.concat(this.props.children)
+      : layers.concat([this.props.children])
+    }
+
+    return layers
+  },
+
   renderShadow () {
     return (
       <div
@@ -122,19 +136,35 @@ export default createClass({
   },
 
   renderLayers () {
+    const allLayers = this.allLayers()
+
     return (
       <div style={style.layers}>
-        {this.props.layers &&
-          this.props.layers.map((imgSrc, idx) =>
-            <div
-              style={{
-                backgroundImage: `url(${imgSrc})`,
-                ...style.renderedLayer,
-                ...(this.state.layers[idx] ? this.state.layers[idx] : {})
-              }}
-              key={idx}
-            />
-          )}
+        {allLayers && allLayers.map((layer, idx) => {
+          if (typeof layer === 'string') {
+            return (
+              <div
+                style={{
+                  backgroundImage: `url(${layer})`,
+                  ...style.renderedLayer,
+                  ...(this.state.layers[idx] ? this.state.layers[idx] : {})
+                }}
+                key={idx}
+               />
+            )
+          }
+
+          return React.Children.map(layer,
+             child => React.cloneElement(child, {
+               style: {
+                 ...child.props.style,
+                 ...style.root,
+                 ...(this.props.style ? this.props.style : {}),
+                 ...this.state.layers[idx]
+               },
+               className: `${child.props.className} ${this.props.className || ''}`
+             }))
+        })}
       </div>
     )
   },
@@ -153,6 +183,7 @@ export default createClass({
           }}
           className={this.props.className || ''}>
           <img style={style.staticFallback} src={this.props.staticFallback} />
+          {this.props.children}
         </div>
       )
     }
