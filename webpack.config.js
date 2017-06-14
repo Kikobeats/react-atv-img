@@ -1,15 +1,11 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path')
+const webpack = require('webpack')
 
-var constPlugin = new webpack.DefinePlugin({
-  '__DEV__': JSON.stringify(JSON.parse(process.env.DEV || 'false'))
-});
-
-var config = {};
+let config = {}
 
 if (process.env.NODE_ENV === 'production') {
   config = {
-    devtool: 'eval',
+    devtool: 'source-map',
     entry: [
       './example/src'
     ],
@@ -19,24 +15,21 @@ if (process.env.NODE_ENV === 'production') {
       publicPath: '/static/'
     },
     plugins: [
-      constPlugin,
-      new webpack.optimize.OccurenceOrderPlugin(),
       new webpack.DefinePlugin({
-        'process.env': {
-          'NODE_ENV': JSON.stringify('production')
-        }
+        'process.env.NODE_ENV': JSON.stringify('production')
       }),
-      new webpack.optimize.UglifyJsPlugin({
-        compressor: {
-          warnings: false
-        }
+      new webpack.UglifyJsPlugin({
+        sourceMap: true,
+        minimize: true,
+        compress: { warnings: false },
+        comments: false
       })
-    ],
+    ]
   }
 }
 
 module.exports = Object.assign({}, {
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'eval',
   entry: [
     'webpack-hot-middleware/client',
     './example/src'
@@ -47,25 +40,20 @@ module.exports = Object.assign({}, {
     publicPath: '/static/'
   },
   plugins: [
-    constPlugin,
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin()
   ],
   resolve: {
     alias: {
-      'react-atv-img': path.join(__dirname, 'src')
+      'react-atv-img': path.join(__dirname, 'src/components/AtvImg.js')
     },
-    extensions: ['', '.js']
+    extensions: ['.js']
   },
   module: {
-    loaders: [{
+    rules: [{
       test: /\.js$/,
-      loaders: ['babel'],
-      exclude: /node_modules/,
-      includes: [
-        './example/src',
-        './src'
-      ]
+      use: ['babel-loader'],
+      exclude: /node_modules/
     }]
   }
-}, config);
+}, config)
