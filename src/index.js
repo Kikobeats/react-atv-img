@@ -1,6 +1,6 @@
 import React, {createClass, PropTypes} from 'react'
 
-import styles from '../styles'
+import style from './style'
 
 export default createClass({
   propTypes: {
@@ -112,8 +112,8 @@ export default createClass({
     return (
       <div
         style={{
-          ...styles.shadow,
-          ...(this.state.isOnHover ? styles.shadowOnHover : {})
+          ...style.shadow,
+          ...(this.state.isOnHover ? style.shadowOnHover : {})
         }}
       />
     )
@@ -121,13 +121,13 @@ export default createClass({
 
   renderLayers () {
     return (
-      <div style={styles.layers}>
+      <div style={style.layers}>
         {this.props.layers &&
           this.props.layers.map((imgSrc, idx) =>
             <div
               style={{
                 backgroundImage: `url(${imgSrc})`,
-                ...styles.renderedLayer,
+                ...style.renderedLayer,
                 ...(this.state.layers[idx] ? this.state.layers[idx] : {})
               }}
               key={idx}
@@ -138,7 +138,7 @@ export default createClass({
   },
 
   renderShine () {
-    return <div style={{...styles.shine, ...this.state.shine}} />
+    return <div style={{...style.shine, ...this.state.shine}} />
   },
 
   render () {
@@ -146,11 +146,11 @@ export default createClass({
       return (
         <div
           style={{
-            ...styles.root,
+            ...style.root,
             ...(this.props.style ? this.props.style : {})
           }}
           className={this.props.className || ''}>
-          <img style={styles.staticFallback} src={this.props.staticFallback} />
+          <img style={style.staticFallback} src={this.props.staticFallback} />
         </div>
       )
     }
@@ -158,7 +158,7 @@ export default createClass({
     return (
       <div
         style={{
-          ...styles.root,
+          ...style.root,
           transform: `perspective(${this.state.rootElemWidth * 3}px)`,
           ...(this.props.style ? this.props.style : {})
         }}
@@ -170,7 +170,7 @@ export default createClass({
         onTouchEnd={this.handleLeave}
         className={this.props.className || ''}
         ref={node => (this.root = node)}>
-        <div style={{...styles.container, ...this.state.container}}>
+        <div style={{...style.container, ...this.state.container}}>
           {this.renderShadow()}
           {this.renderLayers()}
           {this.renderShine()}

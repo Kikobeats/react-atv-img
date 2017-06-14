@@ -17,6 +17,9 @@
     "type": "git",
     "url": "git+https://github.com/keyanzhang/react-atv-img.git"
   },
+  "files": [
+    "src"
+  ],
   "keywords": [
     "react",
     "react-component",

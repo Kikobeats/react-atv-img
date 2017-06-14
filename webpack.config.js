@@ -45,7 +45,7 @@ module.exports = Object.assign({}, {
   ],
   resolve: {
     alias: {
-      'react-atv-img': path.join(__dirname, 'src/components/AtvImg.js')
+      'react-atv-img': path.join(__dirname, 'src')
     },
     extensions: ['.js']
   },
