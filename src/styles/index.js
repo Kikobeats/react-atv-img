@@ -1,15 +1,15 @@
-const styles = {
+export default {
   root: {
     borderRadius: 5,
     transformStyle: 'preserve-3d',
-    WebkitTapHighlightColor: 'rgba(#000, 0)',
+    WebkitTapHighlightColor: 'rgba(#000, 0)'
   },
 
   staticFallback: {
     maxWidth: '100%',
     maxHeight: '100%',
     borderRadius: 5,
-    boxShadow: '0 2px 8px rgba(14, 21, 47, 0.25)',
+    boxShadow: '0 2px 8px rgba(14, 21, 47, 0.25)'
   },
 
   container: {
@@ -17,11 +17,12 @@ const styles = {
     width: '100%',
     height: '100%',
     borderRadius: 5,
-    transition: 'all 0.2s ease-out',
+    transition: 'all 0.2s ease-out'
   },
 
   shadowOnHover: {
-    boxShadow: '0 45px 100px rgba(14, 21, 47, 0.4), 0 16px 40px rgba(14, 21, 47, 0.4)',
+    boxShadow:
+      '0 45px 100px rgba(14, 21, 47, 0.4), 0 16px 40px rgba(14, 21, 47, 0.4)'
   },
 
   layers: {
@@ -30,7 +31,7 @@ const styles = {
     height: '100%',
     borderRadius: 5,
     overflow: 'hidden',
-    transformStyle: 'preserve-3d',
+    transformStyle: 'preserve-3d'
   },
 
   renderedLayer: {
@@ -43,7 +44,7 @@ const styles = {
     backgroundPosition: 'center',
     backgroundColor: 'transparent',
     backgroundSize: 'cover',
-    transition: 'all 0.1s ease-out',
+    transition: 'all 0.1s ease-out'
   },
 
   shadow: {
@@ -53,7 +54,7 @@ const styles = {
     width: '90%',
     height: '90%',
     transition: 'all 0.2s ease-out',
-    boxShadow: '0 8px 30px rgba(14, 21, 47, 0.6)',
+    boxShadow: '0 8px 30px rgba(14, 21, 47, 0.6)'
   },
 
   shine: {
@@ -63,8 +64,7 @@ const styles = {
     right: 0,
     bottom: 0,
     borderRadius: 5,
-    background: 'linear-gradient(135deg, rgba(255, 255, 255, .25) 0%, rgba(255, 255, 255, 0) 60%)',
-  },
-};
-
-export default styles;
+    background:
+      'linear-gradient(135deg, rgba(255, 255, 255, .25) 0%, rgba(255, 255, 255, 0) 60%)'
+  }
+}
