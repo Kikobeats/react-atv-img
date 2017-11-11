@@ -1,4 +1,6 @@
 # react-atv-img
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/Kikobeats/react-atv-img.svg)](https://greenkeeper.io/)
 A port of [@drewwilson](https://github.com/drewwilson)’s amazing [atvImg](https://github.com/drewwilson/atvImg) (Apple TV 3D parallax effect) library in React. It supports both touch and mouse events.
 
 ## Install
