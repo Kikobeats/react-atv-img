@@ -61,5 +61,9 @@ import AtvImg from 'react-atv-img';
 />
 ```
 
+## Related
+
+- [react-tilt](https://github.com/jonathandion/react-tilt) – Parallax tilt hover effect for React JS.
+
 ## License
 MIT
